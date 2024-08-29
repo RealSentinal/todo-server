@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import jsonwebtoken from "jsonwebtoken";
 import { Application } from "express";
 import { Database } from "sqlite3";
 
@@ -84,6 +85,17 @@ function Register(app: Application, db: Database) {
                 })
             }
 
+            //generate token
+            const token = jsonwebtoken.sign({ username: username }, process.env.TOKEN_SECRET || "secret", { expiresIn: "1h" });
+
+            //set session
+            req.session.user = {
+                username: username,
+                isAuth: true,
+                token: token
+            }
+
+            //send response
             return res.status(200).json({
                 message: "User registered successfully",
             })

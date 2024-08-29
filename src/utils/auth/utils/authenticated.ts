@@ -5,6 +5,7 @@ function Authenticated(app: Application) {
     app.post("/authenticated", (req, res) => {
         const { token } = req.body;
 
+        // check if token is provided
         if (!token) {
             return res.status(400).json({
                 message: "Missing token",
@@ -12,6 +13,7 @@ function Authenticated(app: Application) {
             })
         }
 
+        // verify token
         jsonwebtoken.verify(token, process.env.JWT_SECRET || "secret", (err: any, decode: any) => {
             if (err) {
                 return res.status(401).json({

@@ -44,12 +44,14 @@ function Login(app: Application, db: Database) {
 
         const token = JsonWebToken.sign({ username: username }, process.env.TOKEN_SECRET || "secret", { expiresIn: "1h" });
 
-        // Login successful
+        // Store user in session
         req.session.user = {
             username: username,
             isAuth: true,
             token: token
         }
+
+        // Return response
         return res.status(200).json({
             message: "Login successful",
             token: token
