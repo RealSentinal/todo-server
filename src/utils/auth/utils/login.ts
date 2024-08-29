@@ -1,5 +1,6 @@
 import { Application } from "express";
 import { Database } from "sqlite3";
+import JsonWebToken from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 interface User {
@@ -41,9 +42,17 @@ function Login(app: Application, db: Database) {
             }
         })
 
+        const token = JsonWebToken.sign({ username: username }, process.env.TOKEN_SECRET || "secret", { expiresIn: "1h" });
+
         // Login successful
+        req.session.user = {
+            username: username,
+            isAuth: true,
+            token: token
+        }
         return res.status(200).json({
             message: "Login successful",
+            token: token
         });
     });
 }

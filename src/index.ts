@@ -1,10 +1,18 @@
-import expres from "express";
+import expres, { urlencoded } from "express";
+import session from "express-session";
 import dotenv from "dotenv";
 import Utils from "./utils/utils";
 
 dotenv.config({ path: "./.env" });
 
 const app = expres();
+app.use(expres.json())
+app.use(urlencoded({ extended: true }))
+app.use(session({
+    secret: process.env.SESSION_SECRET || "secret",
+    resave: false,
+    saveUninitialized: true
+}))
 
 Utils(app);
 
