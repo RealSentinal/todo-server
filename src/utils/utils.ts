@@ -1,3 +1,11 @@
-import sqlite3 from "sqlite3";
+// Libs
+import { db } from "./database/database";
+import { Application } from "express";
 
-const db = new sqlite3.Database("./database.db");
+// Functions
+import Auth from "./auth/auth";
+
+// Export
+export default function Utils(app: Application) {
+    Auth(app, db);
+}
