@@ -61,6 +61,7 @@ body:
 }
 ```
 
+## Crud
 ## Create
 ```bash
 # POST /create
@@ -106,5 +107,15 @@ body: {
 body: {
   token: ...,
   id: ...
+}
+```
+
+## Teams
+## Create
+```bash
+# POST /teams/create
+body: {
+  token: ...,
+  name: ...
 }
 ```
