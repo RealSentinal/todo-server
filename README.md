@@ -119,3 +119,21 @@ body: {
   name: ...
 }
 ```
+
+## Delete
+```bash
+# DELETE
+body: {
+  id: ...,
+  token: ...
+}
+```
+
+## Rename
+```bash
+# POST
+body: {
+  id: ...,
+  token: ...,
+}
+```
