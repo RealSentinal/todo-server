@@ -2,10 +2,9 @@ import jsonwebtoken from "jsonwebtoken";
 import { Application } from "express";
 import { taskdb } from "../../database/database";
 
-function Update(app: Application) {
-
-    app.put("/update", (req, res) => {
-        const { token, id, title, description } = req.body;
+function ReadByFilter(app: Application) {
+    app.get("/read/filter", (req, res) => {
+        const { token, filter } = req.body;
         jsonwebtoken.verify(token, process.env.JWT_SECRET || "secret", (err: any, decode: any) => {
             if (err) {
                 return res.status(401).json({
@@ -13,7 +12,7 @@ function Update(app: Application) {
                 })
             }
 
-            taskdb.run("UPDATE tasks SET title = ?, description = ? WHERE id = ? AND user_id = ?", [title, description, id, decode.id], (err) => {
+            taskdb.all("SELECT * FROM tasks WHERE user_id = ? AND description LIKE ?", [decode.id, `%${filter}%`], (err, rows) => {
                 if (err) {
                     console.log(err);
                     return res.status(500).json({
@@ -22,7 +21,7 @@ function Update(app: Application) {
                 }
 
                 return res.status(200).json({
-                    message: "Task updated successfully"
+                    tasks: rows
                 })
             })
         })

@@ -7,11 +7,11 @@
   - [x] User Schema
   - [x] Task Schema
   - [x] Role schema
-+ [ ] CRUD
++ [x] CRUD
   - [x] Create
-  - [ ] Read
-  - [ ] Update
-  - [ ] Delete
+  - [x] Read
+  - [x] Update
+  - [x] Delete
 + [ ] Roles
   - [ ] Administrator
   - [ ] User
@@ -33,7 +33,7 @@ npm run start
 
 ## Register
 ```bash
-#POST /register
+# POST /register
 body:
 {
   username: ...,
@@ -45,7 +45,7 @@ body:
 
 ## Login
 ```bash
-#POST /login
+# POST /login
 body: {
   username: ...,
   password: ...,
@@ -54,9 +54,57 @@ body: {
 
 ## IsAuthenticated
 ```bash
-#POST /login
+# POST /login
 body:
 {
   token: ...
+}
+```
+
+## Create
+```bash
+# POST /create
+body: {
+  token: ...,
+  description: ...,
+  completed: ...,
+  user_id: ...
+}
+```
+
+## Read
+```bash
+# GET /read
+body: {
+  token: ...
+}
+```
+
+## Read By Filters
+```bash
+# GET /read/filter
+body: {
+  token: ...,
+  filter: ...
+}
+```
+
+## Update
+```bash
+# PUT /update
+body: {
+  token: ...,
+  id: ...,
+  description: ...,
+  title: ...
+}
+```
+
+## Delete
+```bash
+# DELETE /delete
+body: {
+  token: ...,
+  id: ...
 }
 ```
