@@ -137,3 +137,20 @@ body: {
   token: ...,
 }
 ```
+
+## Add User
+```bash
+# POST /teams/adduser
+body: {
+  token: ...,
+  username: ...
+}
+```
+
+## Remove User
+```bash
+body: {
+  token: ...,
+  username: ...
+}
+```
