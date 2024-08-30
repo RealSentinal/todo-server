@@ -3,10 +3,12 @@
   - [x] Login
   - [x] Register
   - [x] IsAuthenticated
-+ [ ] Database
-  - [ ] Schema
++ [x] Database
+  - [x] User Schema
+  - [x] Task Schema
+  - [x] Role schema
 + [ ] CRUD
-  - [ ] Create
+  - [x] Create
   - [ ] Read
   - [ ] Update
   - [ ] Delete

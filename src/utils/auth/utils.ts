@@ -1,8 +1,8 @@
 import { Application } from "express";
 import { Database } from "sqlite3";
-import { Register } from "./utils/register";
-import { Login } from "./utils/login";
-import { Authenticated } from "./utils/authenticated";
+import { Register } from "./auth/register";
+import { Login } from "./auth/login";
+import { Authenticated } from "./auth/authenticated";
 
 export default function Auth(app: Application, db: Database) {
     Authenticated(app);
